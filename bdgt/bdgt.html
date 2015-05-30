@@ -1,0 +1,29 @@
+<head>
+  <title>APP - BDGT</title>
+  <link rel="stylesheet" href="bdgt.css">
+</head>
+
+<body>
+  {{> CommentList }}
+  {{> CommentAdd }}
+</body>
+
+<template name="CommentList">
+  <h1>Layout</h1>
+  {{#each comments }}
+    <li>
+      <p>{{ login }}</p>
+      <p>{{ comment }}</p>
+      <p>{{ formatTimeStamp timestamp }}</p>
+    </li>
+  {{else}}
+    <li>nothing to show</li>
+  {{/each}}
+</template>
+
+<template name="CommentAdd">
+  <form>
+    <input type="text" name="comment" autofocus placeholder="Add a comment..." />
+    <input type="submit" name="name" value="Add">
+  </form>
+</template>
