@@ -4,6 +4,10 @@ if (Meteor.isClient) {
 
   Meteor.subscribe('allComments');
 
+  Meteor.call('callMe','carlos', function (err, data) {
+    console.log(data);
+  });
+
   Template.CommentList.helpers({
     comments: function () {
       return Comments.find();
@@ -30,10 +34,16 @@ if (Meteor.isClient) {
 
         formEl.reset();
       }
-  })
+  });
 }
 
 if (Meteor.isServer) {
+
+  Meteor.methods({
+    callMe: function (name) {
+      return 'hi ' + name;
+    }
+  });
   // returns a cursor that describes the data
   Meteor.publish('allComments', function () {
     var cursor = Comments.find();
