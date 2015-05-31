@@ -4,21 +4,32 @@
 </head>
 
 <body>
+  {{> login}}
   {{> CommentList }}
   {{> CommentAdd }}
 </body>
 
 <template name="CommentList">
   <h1>Layout</h1>
-  {{#each comments }}
-    <li>
-      <p>{{ login }}</p>
-      <p>{{ comment }}</p>
-      <p>{{ formatTimeStamp timestamp }}</p>
-    </li>
-  {{else}}
-    <li>nothing to show</li>
-  {{/each}}
+  {{#if currentUser }}
+    {{#each comments }}
+      <li>
+        <p>{{ login }}</p>
+        <p>{{ comment }}</p>
+        <p>{{ formatTimeStamp timestamp }}</p>
+      </li>
+    {{else}}
+      <li>nothing to show</li>
+    {{/each}}
+  {{/if}}
+</template>
+
+<template name="login">
+  {{#if currentUser}}
+    TODO
+  {{ else }}
+    {{> loginButtons}}
+  {{/if}}
 </template>
 
 <template name="CommentAdd">
